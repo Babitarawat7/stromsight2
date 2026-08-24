@@ -1,0 +1,152 @@
+@import "tailwindcss";
+
+:root {
+  --bg-void: #060913;
+  --bg-panel: #0B101D;
+  --bg-card: #121829;
+  --bg-card-hover: #172036;
+  --border-subtle: #192238;
+  --border-active: #293859;
+  --accent-cyan: #00F0FF;
+  --accent-cyan-glow: rgba(0, 240, 255, 0.25);
+  --accent-blue: #3B82F6;
+  
+  --risk-low: #10B981;
+  --risk-med: #F59E0B;
+  --risk-high: #EF4444;
+  --risk-catastrophic: #9333EA;
+  
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-heading: 'Space Grotesk', sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-void);
+  color: #E2E8F0;
+  font-family: var(--font-sans);
+  overflow: hidden;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-void);
+}
+::-webkit-scrollbar-thumb {
+  background: #1E293B;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+/* Tactical HUD Panel Styling */
+.hud-panel {
+  background: rgba(11, 16, 29, 0.92);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--border-subtle);
+  border-radius: 3px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+}
+
+.hud-panel-active {
+  border-color: var(--border-active);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.1);
+}
+
+/* Mission Control Grid Background */
+.bg-grid-pattern {
+  background-size: 30px 30px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+/* Radar Pulse / Beacon Animations */
+@keyframes radarSweep {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.15);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2s infinite ease-in-out;
+}
+
+.animate-radar-sweep {
+  animation: radarSweep 6s linear infinite;
+}
+
+/* Satellite scanline effect overlay */
+.scanline-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.25) 50%
+  );
+  background-size: 100% 4px;
+  z-index: 400;
+  opacity: 0.3;
+}
+
+/* Custom Leaflet Map Container Tweaks */
+.leaflet-container {
+  background-color: #04070F !important;
+  font-family: var(--font-sans) !important;
+}
+
+.leaflet-control-zoom {
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: 3px !important;
+  overflow: hidden;
+}
+
+.leaflet-control-zoom a {
+  background-color: rgba(11, 16, 29, 0.9) !important;
+  color: #00F0FF !important;
+  border-bottom: 1px solid var(--border-subtle) !important;
+}
+
+.leaflet-control-attribution {
+  background: rgba(6, 9, 19, 0.8) !important;
+  color: #64748B !important;
+  font-size: 10px !important;
+}
+
+/* Crosshair Cursor on Map */
+.cursor-crosshair {
+  cursor: crosshair;
+}
